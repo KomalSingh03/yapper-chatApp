@@ -1,8 +1,12 @@
+// src/pages/profile.jsx
+import React from 'react';
 
 const Profile = () => {
   return (
-    <div>Profile</div>
-  )
-}
+    <div>
+      <h1>Profile Page</h1>
+    </div>
+  );
+};
 
-export default Profile
+export default Profile;
