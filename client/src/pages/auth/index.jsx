@@ -4,18 +4,40 @@ import Victory from "@/assets/victory.svg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import { Input } from "@/components/ui/input";
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
+import { apiClient } from "@/lib/api-client";
+import { SIGNUP_ROUTE } from '@/utils/constants';
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const validateSignup = () => {
+    if (!email.length) {
+      toast.error("Email is required.");
+      return false;
+    }
+    if (!password.length) {
+      toast.error("Password is required.");
+      return false;
+    }
+    if (password !== confirmPassword) {
+      toast.error("Password and confirm password should be same");
+      return false;
+    }
+    return true;
+  };
+
   const handleLogin = async () => {
     // Login logic here
   };
 
   const handleSignup = async () => {
-    // Signup logic here
+    if (validateSignup()) {
+      const response = await apiClient.post(SIGNUP_ROUTE, { email, password });
+      console.log({ response });
+    }
   };
 
   return (
