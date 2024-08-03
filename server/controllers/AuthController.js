@@ -1,4 +1,4 @@
-import User from "../models/UserModel.js";
+import User from "../models/UserModel";
 import jwt from "jsonwebtoken";
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
@@ -9,7 +9,7 @@ const createToken = (email, userId) => {
 
 export const signup = async (request, response, next) => {
     try {
-        const { email, password } = request.body;
+        const { email, password } = req.body;
         if (!email || !password) {
             return response.status(400).send("Email and Password are required.");
         }
