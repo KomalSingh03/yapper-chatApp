@@ -10,17 +10,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3001;
 const databaseURL = process.env.DATABASE_URL;
-
 const AUTH_ROUTES = "/api/auth";
 
-app.use(
-  cors({
-    origin: [process.env.ORIGIN || "http://localhost:5173"], // Ensure this matches your client URL
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    credentials: true,
-  })
-);
-
+app.use(cors());
 app.use(cookieParser());
 
 app.use(express.json());
