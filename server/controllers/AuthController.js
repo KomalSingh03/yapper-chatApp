@@ -21,6 +21,7 @@ export const signup = async (request, response, next) => {
             secure: true,
             sameSite: "None",
         });
+        // response.set('Access-Control-Allow-Credentials','true')
         return response.status(201).json({
             user: {
                 id: user.id,
@@ -30,6 +31,7 @@ export const signup = async (request, response, next) => {
         });
     } catch (error) {
         console.log({ error });
+        
         return response.status(500).send("Internal Server Error");
     }
 };
