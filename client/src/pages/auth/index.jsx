@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { apiClient } from "@/lib/api-client";
 import { SIGNUP_ROUTE } from '@/utils/constants';
+import axios from 'axios';
+// import VITE_SERVER_URL from 
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -34,11 +36,16 @@ const Auth = () => {
   };
 
   const handleSignup = async () => {
+    const url=import.meta.env.VITE_SERVER_URL+SIGNUP_ROUTE
     if (validateSignup()) {
-      const response = await apiClient.post(SIGNUP_ROUTE, 
+      const response = await axios.post(url, 
         { email, password },
-        {withCredentials:true },
-
+        {
+          withCredentials: true, // Include credentials
+          headers: {
+              'Content-Type': 'application/json', // Set content type
+          },
+      }
       );
       console.log({ response });
     }
